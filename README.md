@@ -27,6 +27,10 @@ by extension type.
 Custom fields are extensions which add a field to various objects in Phabricator.
 - Lotus Link : Field to link task with object in "IBM Lotus Notes"  
 
+### src/translations
+Translation for new text  
+
+
 # Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
