@@ -23,6 +23,10 @@ For more details, see [this article](https://secure.phabricator.com/book/phabcon
 The extensions are under the `src/` directory, organized into sub-directories
 by extension type.
 
+### src/conf
+Specific configuration for module  
+
+
 ### src/customfields
 Custom fields are extensions which add a field to various objects in Phabricator.
 - Lotus Link : Field to link task with object in "IBM Lotus Notes"  

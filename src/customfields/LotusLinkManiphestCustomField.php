@@ -104,11 +104,12 @@ final class LotusLinkManiphestCustomField extends ManiphestCustomField {
       return null;
     }
 
+    $lotusServer = PhabricatorEnv::getEnvConfig('match.lotus-uri');
+
     return phutil_tag(
       'a',
       array(
-        //TODO add server in conf
-        'href' => 'notes://PLAM0078/'.$val[self::LOTUS_URL_KEY].'?opendocument'
+        'href' => 'notes://'.$lotusServer.$val[self::LOTUS_URL_KEY].'?opendocument'
       ),
       pht(trim($val[self::LOTUS_ID_KEY])));
   }

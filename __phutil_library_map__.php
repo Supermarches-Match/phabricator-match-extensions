@@ -10,11 +10,13 @@ phutil_register_library_map(array(
   '__library_version__' => 2,
   'class' => array(
     'LotusLinkManiphestCustomField' => 'src/customfields/LotusLinkManiphestCustomField.php',
+    'MatchExtensionsConfigOptions' => 'src/conf/MatchExtensionsConfigOptions.php',
     'MatchExtensionsTranslationFrFR' => 'src/translations/MatchExtensionsTranslationFrFR.php',
   ),
   'function' => array(),
   'xmap' => array(
     'LotusLinkManiphestCustomField' => 'ManiphestCustomField',
+    'MatchExtensionsConfigOptions' => 'PhabricatorApplicationConfigOptions',
     'MatchExtensionsTranslationFrFR' => 'PhutilTranslation',
   ),
 ));
