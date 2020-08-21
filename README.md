@@ -31,6 +31,10 @@ Specific configuration for module
 Custom fields are extensions which add a field to various objects in Phabricator.
 - Lotus Link : Field to link task with object in "IBM Lotus Notes"  
 
+### src/markup
+Custom remarkup engin 
+- Kroki (Remarkup extension author : zengxs): see dociumentation on https://kroki.io/#how 
+
 ### src/translations
 Translation for new text  
 
