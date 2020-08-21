@@ -34,6 +34,20 @@ Custom fields are extensions which add a field to various objects in Phabricator
 ### src/translations
 Translation for new text  
 
+### src/script
+#### UpdatePolicies
+- Update diffusion : Update policies and authorisation with Match rules :
+    - Policies : 
+        - Visible To <space> All Users
+        - Editable By Administrators
+        - Pushable By Custom Policy [Administrator && Team with name 'Equipe <spaceName>']
+    - Authorisation :
+        - Allow enormous change : false
+        - Allow dangerous change : true 
+```
+$ ./bin/update_policies diffusion --force <true|false> --update-authorization <true|false>
+```
+
 
 # Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.

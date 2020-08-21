@@ -9,14 +9,21 @@
 phutil_register_library_map(array(
   '__library_version__' => 2,
   'class' => array(
+    'DiffusionService' => 'src/service/DiffusionService.php',
     'LotusLinkManiphestCustomField' => 'src/customfields/LotusLinkManiphestCustomField.php',
     'MatchExtensionsConfigOptions' => 'src/conf/MatchExtensionsConfigOptions.php',
     'MatchExtensionsTranslationFrFR' => 'src/translations/MatchExtensionsTranslationFrFR.php',
+    'ProjectService' => 'src/service/ProjectService.php',
+    'ScriptUtils' => 'src/utils/ScriptUtils.php',
+    'UpdatePolicies' => 'src/workflow/UpdatePolicies.php',
+    'UpdatePoliciesDiffusionWorkflow' => 'src/workflow/UpdatePoliciesDiffusionWorkflow.php',
   ),
   'function' => array(),
   'xmap' => array(
     'LotusLinkManiphestCustomField' => 'ManiphestCustomField',
     'MatchExtensionsConfigOptions' => 'PhabricatorApplicationConfigOptions',
     'MatchExtensionsTranslationFrFR' => 'PhutilTranslation',
+    'UpdatePolicies' => 'PhutilArgumentWorkflow',
+    'UpdatePoliciesDiffusionWorkflow' => 'UpdatePolicies',
   ),
 ));
