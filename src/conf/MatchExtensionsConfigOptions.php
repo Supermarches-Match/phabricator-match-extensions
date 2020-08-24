@@ -27,6 +27,13 @@ class MatchExtensionsConfigOptions extends PhabricatorApplicationConfigOptions {
           pht(
             'Set the URI where Lotus server is accessible.'))
         ->addExample('plam00048', pht('Valid Setting')),
+      $this->newOption('match.kroki-uri', 'string', null)
+        ->setSummary(pht('Kroki API url.'))
+        ->setDescription(
+          pht(
+            'Set the URI where kroki api server is accessible.'))
+        ->addExample('https://kroki.io/', pht('Valid Setting')
+        ->setDefault('https://kroki.io/')),
     );
   }
 }

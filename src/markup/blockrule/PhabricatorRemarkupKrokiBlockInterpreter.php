@@ -33,9 +33,10 @@
  */
 
 abstract class PhabricatorRemarkupKrokiBlockInterpreter extends PhabricatorRemarkupBaseBlockInterpreter {
+
   protected static function fetch_kroki_image($content, $diagram_type, $width) {
     $encoded = self::base64_urlsafe_encode(zlib_encode($content, ZLIB_ENCODING_DEFLATE, 9));
-    $url = "https://kroki.io/".$diagram_type."/svg/".$encoded;
+    $url = PhabricatorEnv::getEnvConfig('match.kroki-uri').$diagram_type."/svg/".$encoded;
     return self::fetch_svg_image($url, $width);
   }
 
