@@ -32,8 +32,8 @@ class MatchExtensionsConfigOptions extends PhabricatorApplicationConfigOptions {
         ->setDescription(
           pht(
             'Set the URI where kroki api server is accessible.'))
-        ->addExample('https://kroki.io/', pht('Valid Setting')
-        ->setDefault('https://kroki.io/')),
+        ->addExample('https://kroki.io/', pht('Valid Setting'))
+        ->setDefault('https://kroki.io/'),
     );
   }
 }
