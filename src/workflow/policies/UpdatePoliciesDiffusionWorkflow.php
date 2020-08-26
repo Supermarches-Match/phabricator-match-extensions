@@ -31,7 +31,6 @@ final class UpdatePoliciesDiffusionWorkflow
         ))
       ->setDiffusionService(new DiffusionService())
       ->setProjectService(new ProjectService());
-
   }
 
   public function execute(PhutilArgumentParser $args) {

@@ -52,6 +52,14 @@ Translation for new text
 $ ./bin/update_policies diffusion --force <true|false> --update-authorization <true|false>
 ```
 
+- Manage Bot user:
+    - Create user if not exist
+    - Attach to the defined groupe (optional)
+    - Generate SSH key pair and download private key, if directory option is defined
+```
+server --name-format Bot-Serveur-%s --group-name "Group-name" --robot-names "toto, tata, titi, ..." --ssh-directory "myDirectoryPath"
+```
+
 
 # Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
