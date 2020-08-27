@@ -23,17 +23,20 @@ class MatchExtensionsConfigOptions extends PhabricatorApplicationConfigOptions {
     return array(
       $this->newOption('match.lotus-uri', 'string', null)
         ->setSummary(pht('Lotus Server url.'))
-        ->setDescription(
-          pht(
-            'Set the URI where Lotus server is accessible.'))
+        ->setDescription(pht('Set the URI where Lotus server is accessible.'))
         ->addExample('plam00048', pht('Valid Setting')),
-      $this->newOption('match.kroki-uri', 'string', null)
+      $this->newOption('match.kroki-uri', 'string', 'https://kroki.io/')
         ->setSummary(pht('Kroki API url.'))
-        ->setDescription(
-          pht(
-            'Set the URI where kroki api server is accessible.'))
-        ->addExample('https://kroki.io/', pht('Valid Setting'))
-        ->setDefault('https://kroki.io/'),
+        ->setDescription(pht('Set the URI where kroki api server is accessible.'))
+        ->addExample('https://kroki.io/', pht('Valid Setting')),
+      $this->newOption('match.http.proxy', 'string', null)
+        ->setSummary(pht('Http proxy.'))
+        ->setDescription(pht('Set the URL of the http proxy'))
+        ->addExample('http://proxy.match.com/', pht('Valid Setting')),
+      $this->newOption('match.https.proxy', 'string', null)
+        ->setSummary(pht('Https proxy.'))
+        ->setDescription(pht('Set the URL of the https proxy'))
+        ->addExample('https://proxy.match.com/', pht('Valid Setting')),
     );
   }
 }
