@@ -154,3 +154,9 @@ final class PhabricatorRemarkupWavedromBlockInterpreter extends PhabricatorRemar
     return "wavedrom";
   }
 }
+
+final class PhabricatorRemarkupBpmnBlockInterpreter extends PhabricatorRemarkupKrokiBlockInterpreter {
+  public function getInterpreterName() {
+    return "bpmn";
+  }
+}
