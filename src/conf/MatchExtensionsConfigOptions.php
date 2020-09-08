@@ -37,6 +37,14 @@ class MatchExtensionsConfigOptions extends PhabricatorApplicationConfigOptions {
         ->setSummary(pht('Https proxy.'))
         ->setDescription(pht('Set the URL of the https proxy'))
         ->addExample('https://proxy.match.com/', pht('Valid Setting')),
+      $this->newOption('match.no.proxy', 'list<string>', array())
+        ->setDescription(pht('Set the URL for by pass proxy'))
+        ->addExample(
+          array(
+            'localhost',
+            '127.0.0.1',
+          ),
+          pht('Url wich by passs proxy')),
     );
   }
 }
