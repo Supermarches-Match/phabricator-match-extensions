@@ -22,6 +22,11 @@ class MatchPhutilHTTPEngineExtension extends PhutilHTTPEngineExtension {
   public function getHTTPProxyURI(PhutilURI $uri) {
     $httpsProxy = PhabricatorEnv::getEnvConfig('match.https.proxy');
     $httpProxy = PhabricatorEnv::getEnvConfig('match.http.proxy');
+    $noProxy = PhabricatorEnv::getEnvConfig('match.no.proxy');
+
+    if(in_array($uri->getDomain(), $noProxy)){
+      return null;
+    }
 
     if ($httpsProxy !== null && $uri->getProtocol() === 'https') {
       return new PhutilURI($httpsProxy);
