@@ -52,6 +52,10 @@ final class UpdatePoliciesDiffusionWorkflow
         $group = $this->projectService->getGroupByName('Equipe '.$space->getNamespaceName());
       }
 
+      if($group === null){
+        continue;
+      }
+
       echo pht("Group: %s\n", $group->getDisplayName());
       ScriptUtils::separator();
       echo pht("    Default Policies:\n");
