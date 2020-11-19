@@ -31,6 +31,14 @@ Specific configuration for module
 Custom fields are extensions which add a field to various objects in Phabricator.
 - Lotus Link : Field to link task with object in "IBM Lotus Notes"  
 
+### src/future
+- MatchPhutilHTTPEngineExtension : Engine to activate company proxy
+    - HTTP_PROX, HTTPS_PROXY, NO_PROXY have to be define in configuration 
+
+### src/infrastructure
+- Daemon
+    - PhabricatorUserManagementDaemon : Create user from LDAP adptater to avoid waiting first connexion 
+
 ### src/markup
 Custom remarkup engin 
 - Kroki (Remarkup extension author : zengxs): see dociumentation on https://kroki.io/#how 
