@@ -9,6 +9,7 @@
 phutil_register_library_map(array(
   '__library_version__' => 2,
   'class' => array(
+    'ChildTotalPointManiphestCustomField' => 'src/customfields/ChildTotalPointManiphestCustomField.php',
     'DiffusionService' => 'src/service/DiffusionService.php',
     'LotusLinkManiphestCustomField' => 'src/customfields/LotusLinkManiphestCustomField.php',
     'ManageBotUser' => 'src/workflow/bot/ManageBotUser.php',
@@ -50,6 +51,7 @@ phutil_register_library_map(array(
     'init_script' => 'scripts/init/init-script.php',
   ),
   'xmap' => array(
+    'ChildTotalPointManiphestCustomField' => 'ManiphestCustomField',
     'DiffusionService' => 'Phobject',
     'LotusLinkManiphestCustomField' => 'ManiphestCustomField',
     'ManageBotUser' => 'PhutilArgumentWorkflow',

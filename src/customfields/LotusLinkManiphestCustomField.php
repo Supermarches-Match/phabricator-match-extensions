@@ -42,7 +42,7 @@ final class LotusLinkManiphestCustomField extends ManiphestCustomField {
   public function canDisableField() {
     return false;
   }
-  //Core Properties and Field Identit
+  //Core Properties and Field Identity
 
   //Field Storage
   public function shouldUseStorage() {

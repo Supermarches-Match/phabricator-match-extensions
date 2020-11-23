@@ -29,7 +29,8 @@ Specific configuration for module
 
 ### src/customfields
 Custom fields are extensions which add a field to various objects in Phabricator.
-- Lotus Link : Field to link task with object in "IBM Lotus Notes"  
+- Lotus Link : Field to link task with object in "IBM Lotus Notes" 
+- Total estimate point : Display the total of estimate point of child task (can only be work with our specific version of phabricator)
 
 ### src/future
 - MatchPhutilHTTPEngineExtension : Engine to activate company proxy
@@ -37,7 +38,8 @@ Custom fields are extensions which add a field to various objects in Phabricator
 
 ### src/infrastructure
 - Daemon
-    - PhabricatorUserManagementDaemon : Create user from LDAP adptater to avoid waiting first connexion 
+    - PhabricatorUserManagementDaemon : Create user from LDAP adptater to avoid waiting first connexion
+    To start daemon ``./bin/phd launch PhabricatorUserManagementDaemon`` 
 
 ### src/markup
 Custom remarkup engin 
