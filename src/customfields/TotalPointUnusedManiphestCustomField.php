@@ -1,18 +1,18 @@
 <?php
 
-final class ChildTotalPointManiphestCustomField extends ManiphestCustomField {
+final class TotalPointUnusedManiphestCustomField extends ManiphestCustomField {
 
   //Core Properties and Field Identity
   public function getFieldKey() {
-    return 'match:childTotalPoint';
+    return 'match:TotalPointUnused';
   }
 
   public function getFieldName() {
-    return pht('Total Point of Child');
+    return pht('Total Point Unused');
   }
 
   public function getFieldDescription() {
-    return pht('Display the total of the estimation charge');
+    return pht('Display the total of the unused charge');
   }
 
   public function canDisableField() {
@@ -20,42 +20,33 @@ final class ChildTotalPointManiphestCustomField extends ManiphestCustomField {
   }
 
   public function getFieldValue() {
-    $edge_type = ManiphestTaskDependsOnTaskEdgeType::EDGECONST;
+    $estimatedPoints = $this->getObject()->getPoints();;
+    $usedPoints = null;
 
-    $graph = id(new PhabricatorEdgeGraph())
-      ->setEdgeType($edge_type)
-      ->addNodes(
-        array(
-          '<seed>' => array($this->getObject()->getPHID()),
-        ))
-      ->loadGraph();
+    $fields = PhabricatorCustomField::getObjectFields($this->getObject(), PhabricatorCustomField::ROLE_TASKCARD);
+    if ($fields) {
+      $fields->setViewer($this->getViewer());
+      $fields->readFieldsFromStorage($this->getObject());
 
-    $nodes = $graph->getNodes();
-    unset($nodes['<seed>']);
-
-    if (count($nodes) == 1) {
-      return null;
-    }
-
-    $phids = array_keys($nodes);
-    $tasks = id(new ManiphestTaskQuery())
-      ->setViewer(PhabricatorUser::getOmnipotentUser())
-      ->withPHIDs($phids)
-      ->execute();
-
-    $total = null;
-
-    foreach ($tasks as $task) {
-      $points = $task->getPoints();
-      if ($points != null) {
-        $total += $points;
+      foreach ($fields->getFields() as $field) {
+        if ($field->getFieldKey() == 'std:maniphest:match:points_consomme') {
+          $usedPoints = $field->getProxy()->getFieldValue();
+        } else if ($usedPoints === null && $field->getFieldKey() == 'match:childTotalPointUsed') {
+          $usedPoints = $field->getFieldValue();
+        } else if ($estimatedPoints === null && $field->getFieldKey() == 'match:childTotalPoint') {
+          $estimatedPoints = $field->getFieldValue();
+        }
       }
     }
 
-    if ($total === null) {
+    if ($estimatedPoints === null) {
       return null;
     }
-    return $total;
+
+    if ($usedPoints === null) {
+      return $estimatedPoints;
+    }
+    return $estimatedPoints - $usedPoints;
   }
   //Core Properties and Field Identity
 
@@ -65,7 +56,7 @@ final class ChildTotalPointManiphestCustomField extends ManiphestCustomField {
   }
 
   public function renderPropertyViewLabel() {
-    return pht("Total Charge");
+    return pht("Unused charge");
   }
 
   public function renderPropertyViewValue(array $handles) {
@@ -84,7 +75,7 @@ final class ChildTotalPointManiphestCustomField extends ManiphestCustomField {
 
   //Integration with BoardTaskCard
   public function shouldAppearInTaskCard() {
-    return $this->getIsEnabled();;
+    return $this->getIsEnabled();
   }
 
   public function renderTaskCardValue() {
@@ -92,10 +83,14 @@ final class ChildTotalPointManiphestCustomField extends ManiphestCustomField {
     if (!strlen($value)) {
       return null;
     }
+    $color = PHUITagView::COLOR_YELLOW;
+    if ($value <= 0) {
+      $color = PHUITagView::COLOR_RED;
+    }
 
     return id(new PHUITagView())
       ->setType(PHUITagView::TYPE_SHADE)
-      ->setColor(PHUITagView::COLOR_GREY)
+      ->setColor($color)
       ->setSlimShady(true)
       ->setName($value)
       ->addClass('phui-workcard-points');
@@ -113,13 +108,18 @@ final class ChildTotalPointManiphestCustomField extends ManiphestCustomField {
       return null;
     }
 
+    $color = PHUITagView::COLOR_YELLOW;
+    if ($value <= 0) {
+      $color = PHUITagView::COLOR_RED;
+    }
+
     $label = pht('%s %s',
       $value,
       $this->renderPropertyViewLabel());
 
     return id(new PHUITagView())
       ->setType(PHUITagView::TYPE_SHADE)
-      ->setColor(PHUITagView::COLOR_BLUE)
+      ->setColor($color)
       ->setName($label);
   }
   //Integration with BoardTaskCard

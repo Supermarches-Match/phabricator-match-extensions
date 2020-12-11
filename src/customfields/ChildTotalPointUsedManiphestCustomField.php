@@ -1,18 +1,18 @@
 <?php
 
-final class ChildTotalPointManiphestCustomField extends ManiphestCustomField {
+final class ChildTotalPointUsedManiphestCustomField extends ManiphestCustomField {
 
   //Core Properties and Field Identity
   public function getFieldKey() {
-    return 'match:childTotalPoint';
+    return 'match:childTotalPointUsed';
   }
 
   public function getFieldName() {
-    return pht('Total Point of Child');
+    return pht('Total Point Used of Child');
   }
 
   public function getFieldDescription() {
-    return pht('Display the total of the estimation charge');
+    return pht('Display the total of the used charge');
   }
 
   public function canDisableField() {
@@ -46,9 +46,19 @@ final class ChildTotalPointManiphestCustomField extends ManiphestCustomField {
     $total = null;
 
     foreach ($tasks as $task) {
-      $points = $task->getPoints();
-      if ($points != null) {
-        $total += $points;
+      $fields = PhabricatorCustomField::getObjectFields($task, PhabricatorCustomField::ROLE_TASKCARD);
+      if ($fields) {
+        $fields->setViewer($this->getViewer());
+        $fields->readFieldsFromStorage($task);
+
+        foreach ($fields->getFields() as $field) {
+          if($field->getFieldKey() == 'std:maniphest:match:points_consomme'){
+            $points = $field->getProxy()->getFieldValue();
+            if ($points != null) {
+              $total += $points;
+            }
+          }
+        }
       }
     }
 
@@ -65,7 +75,7 @@ final class ChildTotalPointManiphestCustomField extends ManiphestCustomField {
   }
 
   public function renderPropertyViewLabel() {
-    return pht("Total Charge");
+    return pht("Used charge");
   }
 
   public function renderPropertyViewValue(array $handles) {
@@ -84,7 +94,7 @@ final class ChildTotalPointManiphestCustomField extends ManiphestCustomField {
 
   //Integration with BoardTaskCard
   public function shouldAppearInTaskCard() {
-    return $this->getIsEnabled();;
+    return $this->getIsEnabled();
   }
 
   public function renderTaskCardValue() {
@@ -95,7 +105,7 @@ final class ChildTotalPointManiphestCustomField extends ManiphestCustomField {
 
     return id(new PHUITagView())
       ->setType(PHUITagView::TYPE_SHADE)
-      ->setColor(PHUITagView::COLOR_GREY)
+      ->setColor(PHUITagView::COLOR_VIOLET)
       ->setSlimShady(true)
       ->setName($value)
       ->addClass('phui-workcard-points');
@@ -119,7 +129,7 @@ final class ChildTotalPointManiphestCustomField extends ManiphestCustomField {
 
     return id(new PHUITagView())
       ->setType(PHUITagView::TYPE_SHADE)
-      ->setColor(PHUITagView::COLOR_BLUE)
+      ->setColor(PHUITagView::COLOR_VIOLET)
       ->setName($label);
   }
   //Integration with BoardTaskCard

@@ -10,6 +10,7 @@ phutil_register_library_map(array(
   '__library_version__' => 2,
   'class' => array(
     'ChildTotalPointManiphestCustomField' => 'src/customfields/ChildTotalPointManiphestCustomField.php',
+    'ChildTotalPointUsedManiphestCustomField' => 'src/customfields/ChildTotalPointUsedManiphestCustomField.php',
     'DiffusionService' => 'src/service/DiffusionService.php',
     'LotusLinkManiphestCustomField' => 'src/customfields/LotusLinkManiphestCustomField.php',
     'ManageBotUser' => 'src/workflow/bot/ManageBotUser.php',
@@ -43,6 +44,7 @@ phutil_register_library_map(array(
     'ProjectService' => 'src/service/ProjectService.php',
     'ScriptUtils' => 'src/utils/ScriptUtils.php',
     'StringUtils' => 'src/utils/StringUtils.php',
+    'TotalPointUnusedManiphestCustomField' => 'src/customfields/TotalPointUnusedManiphestCustomField.php',
     'UpdatePolicies' => 'src/workflow/policies/UpdatePolicies.php',
     'UpdatePoliciesDiffusionWorkflow' => 'src/workflow/policies/UpdatePoliciesDiffusionWorkflow.php',
     'UserService' => 'src/service/UserService.php',
@@ -52,6 +54,7 @@ phutil_register_library_map(array(
   ),
   'xmap' => array(
     'ChildTotalPointManiphestCustomField' => 'ManiphestCustomField',
+    'ChildTotalPointUsedManiphestCustomField' => 'ManiphestCustomField',
     'DiffusionService' => 'Phobject',
     'LotusLinkManiphestCustomField' => 'ManiphestCustomField',
     'ManageBotUser' => 'PhutilArgumentWorkflow',
@@ -85,6 +88,7 @@ phutil_register_library_map(array(
     'ProjectService' => 'Phobject',
     'ScriptUtils' => 'Phobject',
     'StringUtils' => 'Phobject',
+    'TotalPointUnusedManiphestCustomField' => 'ManiphestCustomField',
     'UpdatePolicies' => 'PhutilArgumentWorkflow',
     'UpdatePoliciesDiffusionWorkflow' => 'UpdatePolicies',
     'UserService' => 'Phobject',

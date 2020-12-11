@@ -31,6 +31,26 @@ Specific configuration for module
 Custom fields are extensions which add a field to various objects in Phabricator.
 - Lotus Link : Field to link task with object in "IBM Lotus Notes" 
 - Total estimate point : Display the total of estimate point of child task (can only be work with our specific version of phabricator)
+- Total point used : Display the total of used point of child task (can only be work with our specific version of phabricator)
+  A custom field must be created with name match:points_consomme
+```
+"match:points_consomme": {
+    "name": "Charge consomm\u00e9e (jour)",
+    "type": "int",
+    "required": false,
+    "edit": true,
+    "view": false,
+    "taskcard.enable": true,
+    "taskcard.type": "shade",
+    "taskcard.color": "yellow",
+    "taskcard.class": "phui-workcard-points",
+    "taskheader.enable": "true",
+    "taskheader.type": "shade",
+    "taskheader.color": "yellow",
+    "taskheader.class": "phui-workcard-points"
+  }
+```
+- Remaining point : Display the remaining point
 
 ### src/future
 - MatchPhutilHTTPEngineExtension : Engine to activate company proxy
